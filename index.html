@@ -457,6 +457,32 @@
   .letter-actions .btn{ margin-top:0; }
   .btn-ghost{ opacity:.75; font-size:.8rem; padding:11px 18px; }
 
+  /* ===================== SCENE 7 — card stack ===================== */
+  .stack{ display:flex; flex-direction:column; align-items:center; gap:0; }
+  .stack-card{
+    background:var(--paper); color:var(--ink);
+    width:280px; border-radius:12px; padding:22px 22px 20px;
+    box-shadow:var(--shadow); text-align:left;
+    margin-top:-14px;
+    position:relative;
+  }
+  .stack-card:first-child{ margin-top:0; }
+  .stack-card:nth-child(odd){ transform: rotate(-1.6deg); }
+  .stack-card:nth-child(even){ transform: rotate(1.4deg); }
+  .stack-card .eyebrow{ text-align:left; color:var(--blue-mid); font-size:.66rem; }
+  .stack-card p{ font-size:.92rem; line-height:1.6; margin:0; color:var(--ink-soft); }
+  .stack-photo{
+    width:100%; height:150px; border-radius:8px; margin-bottom:14px; overflow:hidden;
+    background:linear-gradient(160deg, var(--blue-pale), var(--blue-soft));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:.78rem; letter-spacing:.04em;
+    background-size:cover; background-position:center;
+  }
+  .stack-photo svg{ width:30px; height:30px; opacity:.8; margin-right:8px; }
+  .stack-card .corner-flower{ position:absolute; bottom:10px; right:12px; width:14px; height:14px; opacity:.55; color:var(--blue-mid); }
+  .stack-tape{ width:46px; height:16px; margin:0 auto; background:rgba(220,233,251,.55); opacity:.7; }
+  #scene7{ overflow-y:auto; padding-top:6vh; }
+
   /* ===================== SCENE 8 — final card ===================== */
   .final-card{
     background:linear-gradient(165deg, rgba(34,56,107,.55), rgba(12,24,48,.7));
@@ -684,6 +710,29 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
       <button class="btn btn-ghost" onclick="letterReplay()">Ulangi surat ↻</button>
       <button class="btn" id="letterCta">Lanjut →</button>
     </div>
+  </section>
+
+  <!-- SCENE 7 — kartu-kartu -->
+  <section class="scene" id="scene7">
+    <p class="eyebrow" style="margin-bottom:18px;">satu-satu, biar nggak buru-buru</p>
+    <div class="stack">
+      <div class="stack-card">
+        <div class="eyebrow">Satu foto yg harus masuk</div>
+        <div class="stack-photo" id="stackPhoto1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 17l-5-5-4 4-3-3-6 6"/></svg>
+          ganti dengan foto kalian
+        </div>
+        <p>Foto ini wajib ada, soalnya ini foto kak ai satu-satunya yg aku punya.</p>
+        <svg class="corner-flower" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 2 1 4 0 6-1-2-1-4 0-6zM12 16c1 2 1 4 0 6-1-2-1-4 0-6zM2 12c2-1 4-1 6 0-2 1-4 1-6 0zM16 12c2-1 4-1 6 0-2 1-4 1-6 0z"/><circle cx="12" cy="12" r="2.4"/></svg>
+      </div>
+      <div class="stack-tape"></div>
+      <div class="stack-card">
+        <div class="eyebrow">Satu alasan kamu harus dirayakan</div>
+        <p>Karna kak ai udah berjuang sejauh ini, dan itu bukan suatu hal yg kecil dan mudah. Jadi hari ini kak ai harus-harus banget dirayakan.</p>
+        <svg class="corner-flower" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 2 1 4 0 6-1-2-1-4 0-6zM12 16c1 2 1 4 0 6-1-2-1-4 0-6zM2 12c2-1 4-1 6 0-2 1-4 1-6 0zM16 12c2-1 4-1 6 0-2 1-4 1-6 0z"/><circle cx="12" cy="12" r="2.4"/></svg>
+      </div>
+    </div>
+    <button class="btn" onclick="goTo(8)">Satu hal terakhir →</button>
   </section>
 
   <!-- SCENE 8 — final card -->
@@ -1115,7 +1164,7 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
       letterCta.onclick = letterNext;
     } else {
       letterCta.textContent = 'Masih ada lagi →';
-      letterCta.onclick = ()=> goTo(8);
+      letterCta.onclick = ()=> goTo(7);
     }
   }
   function letterGoTo(i){
@@ -1165,6 +1214,9 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
   // Ganti placeholder ini dengan foto asli: isi array PHOTO_URLS dengan
   // link gambar (contoh: "foto1.jpg" kalau file ada di folder yg sama).
   const PHOTO_URLS = []; // <-- GANTI FOTO DI SINI kalau sudah ada fotonya
+  // Foto untuk kartu "Satu foto yg harus masuk" di scene 7 (isi salah satu
+  // nama file/URL foto kalian, kalau kosong tetap pakai placeholder ikon kamera)
+  const STACK_PHOTO_1 = '';
 
   function cameraiconSVG(color){
     return `data:image/svg+xml;utf8,` + encodeURIComponent(
@@ -1173,6 +1225,12 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
         <circle cx="12" cy="12.5" r="3.2"/>
         <path d="M8 6l1.4-2h5.2L16 6"/>
       </svg>`);
+  }
+
+  if(STACK_PHOTO_1){
+    const sp = document.getElementById('stackPhoto1');
+    sp.style.backgroundImage = `url(${STACK_PHOTO_1})`;
+    sp.innerHTML = '';
   }
 
   function buildHeart(){
