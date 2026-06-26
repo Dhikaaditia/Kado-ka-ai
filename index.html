@@ -18,6 +18,9 @@
      diklik untuk dilihat lebih besar (lightbox).
   4. Semua teks wish / surat / kartu ada di HTML di bawah, tinggal
      diketik ulang sesuai isi hati kamu.
+  5. Tanggal kalender di scene3 sudah diisi Juli 2026, tanggal 8
+     ditandai. Kalau mau ganti foto polaroid-nya, isi CAL_PHOTO_URL
+     di bagian <script> paling bawah.
   ===================================================================
 -->
 
@@ -250,7 +253,54 @@
   }
   .on-flowers{ text-shadow: 0 2px 14px rgba(5,10,24,.65); }
 
-  /* ===================== SCENE 3 — cake / candle ===================== */
+  /* ===================== SCENE 3 — tanggal spesial (kalender) ===================== */
+  .cal-wrap{ position:relative; width:270px; margin-bottom:10px; }
+  .cal-tag{
+    position:absolute; top:-14px; right:6px; z-index:3;
+    background:var(--paper); color:var(--ink);
+    font-family:'Fraunces',serif; font-weight:600; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+    padding:7px 14px; border-radius:4px; box-shadow:var(--shadow);
+    transform:rotate(4deg);
+  }
+  .cal-photo{
+    position:absolute; top:-36px; right:-16px; z-index:2;
+    width:92px; height:106px; background:var(--paper); padding:6px 6px 14px;
+    border-radius:4px; box-shadow:var(--shadow); transform:rotate(7deg);
+  }
+  .cal-photo-inner{
+    width:100%; height:100%; border-radius:2px; background-size:cover; background-position:center;
+    background-image:linear-gradient(160deg, var(--blue-pale), var(--blue-soft));
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:.58rem; gap:4px; text-align:center; padding:4px;
+  }
+  .cal-photo-inner svg{ width:20px; height:20px; opacity:.7; }
+  .cal-card{
+    background:var(--paper); color:var(--ink);
+    border-radius:16px; padding:30px 16px 20px;
+    box-shadow:var(--shadow); position:relative; z-index:1;
+  }
+  .cal-header{ display:flex; align-items:baseline; gap:8px; justify-content:center; margin-bottom:16px; }
+  .cal-month{ font-family:'Fraunces',serif; font-style:italic; font-size:1.4rem; color:var(--ink); }
+  .cal-year{ font-size:.92rem; color:var(--ink-soft); }
+  .cal-grid{
+    display:grid; grid-template-columns:repeat(7,1fr); gap:7px 2px;
+    font-size:.76rem; color:var(--ink-soft); text-align:center;
+  }
+  .cal-dow{ font-weight:700; color:var(--blue-mid); font-size:.7rem; margin-bottom:2px; }
+  .cal-day-marked{ position:relative; color:var(--ink); font-weight:700; }
+  .cal-day-marked::before{
+    content:''; position:absolute; inset:-4px; border:1.6px solid var(--blue-mid); border-radius:50%;
+  }
+  .cal-quote{
+    margin-top:18px; background:var(--blue-pale); color:var(--ink);
+    font-size:.8rem; line-height:1.5; text-align:center; font-style:italic;
+    padding:13px 12px; border-radius:10px;
+  }
+  .cal-bow{
+    position:absolute; bottom:-14px; left:-8px; font-size:1.5rem; transform:rotate(-12deg); opacity:.9;
+  }
+
+  /* ===================== SCENE 4 — cake / candle ===================== */
   .cake-wrap{ position:relative; margin-bottom:18px; user-select:none; -webkit-user-select:none; cursor:pointer; }
   .cake-stack{ display:flex; flex-direction:column; align-items:center; }
   .cake-top{
@@ -339,7 +389,7 @@
   }
   .candle-continue.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
 
-  /* ===================== SCENE 4 — wishes tags (flip card) ===================== */
+  /* ===================== SCENE 5 — wishes tags (flip card) ===================== */
   .tag-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:24px 26px; margin:18px 0 8px;
   }
@@ -386,7 +436,7 @@
   .tag-counter{ font-size:.78rem; color:var(--blue-soft); margin-top:4px; letter-spacing:.04em; }
   .wish-caption{ font-size:.88rem; color:var(--blue-soft); margin-top:6px; max-width:280px; line-height:1.6; }
 
-  /* ===================== SCENE 5 — heart photo collage ===================== */
+  /* ===================== SCENE 6 — heart photo collage ===================== */
   #heart-wrap{ position:relative; width:320px; height:300px; margin-bottom:10px; }
   .tile{
     position:absolute; width:34px; height:34px; border-radius:6px;
@@ -421,7 +471,7 @@
     font-size:1rem; cursor:pointer; z-index:1;
   }
 
-  /* ===================== SCENE 6 — surat (carousel geser) ===================== */
+  /* ===================== SCENE 7 — surat (carousel geser) ===================== */
   .letter-row{ display:flex; align-items:center; gap:10px; }
   .letter-viewport{
     position:relative; width:300px; max-width:80vw; height:360px;
@@ -457,7 +507,7 @@
   .letter-actions .btn{ margin-top:0; }
   .btn-ghost{ opacity:.75; font-size:.8rem; padding:11px 18px; }
 
-  /* ===================== SCENE 7 — card stack ===================== */
+  /* ===================== SCENE 8 — card stack ===================== */
   .stack{ display:flex; flex-direction:column; align-items:center; gap:0; }
   .stack-card{
     background:var(--paper); color:var(--ink);
@@ -481,9 +531,9 @@
   .stack-photo svg{ width:30px; height:30px; opacity:.8; margin-right:8px; }
   .stack-card .corner-flower{ position:absolute; bottom:10px; right:12px; width:14px; height:14px; opacity:.55; color:var(--blue-mid); }
   .stack-tape{ width:46px; height:16px; margin:0 auto; background:rgba(220,233,251,.55); opacity:.7; }
-  #scene7{ overflow-y:auto; padding-top:6vh; }
+  #scene8{ overflow-y:auto; padding-top:6vh; }
 
-  /* ===================== SCENE 8 — final card ===================== */
+  /* ===================== SCENE 9 — final card ===================== */
   .final-card{
     background:linear-gradient(165deg, rgba(34,56,107,.55), rgba(12,24,48,.7));
     backdrop-filter: blur(8px);
@@ -518,7 +568,7 @@
   #audioToggle:hover{ background:rgba(12,24,48,.8); }
   #audioToggle:active{ transform:scale(.92); }
 
-  /* ===================== SCENE 9 — rating salting ===================== */
+  /* ===================== SCENE 10 — rating salting ===================== */
   .stars{ display:flex; gap:10px; font-size:2.1rem; margin-top:8px; }
   .star{ color:rgba(169,200,238,.3); cursor:pointer; transition: color .2s, transform .2s; line-height:1; }
   .star.active{ color:var(--blue-mid); transform:scale(1.15); }
@@ -588,8 +638,38 @@
     <button class="btn" onclick="goTo(3)">Lanjutkan →</button>
   </section>
 
-  <!-- SCENE 3 — kue & lilin -->
+  <!-- SCENE 3 — tanggal spesial (kalender) -->
   <section class="scene" id="scene3">
+    <div class="cal-wrap">
+      <div class="cal-tag">birthday girl</div>
+      <div class="cal-photo">
+        <div class="cal-photo-inner" id="calPhotoInner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 17l-5-5-4 4-3-3-6 6"/></svg>
+          foto kak ai
+        </div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-header">
+          <span class="cal-month">Juli</span>
+          <span class="cal-year">2026</span>
+        </div>
+        <div class="cal-grid">
+          <span class="cal-dow">S</span><span class="cal-dow">S</span><span class="cal-dow">R</span><span class="cal-dow">K</span><span class="cal-dow">J</span><span class="cal-dow">S</span><span class="cal-dow">M</span>
+          <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          <span>6</span><span>7</span><span class="cal-day-marked">8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+          <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+          <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+          <span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span></span><span></span>
+        </div>
+        <div class="cal-quote">Dari semua tanggal di kalender, yg ini paling spesial.</div>
+      </div>
+      <div class="cal-bow">🎀</div>
+    </div>
+    <button class="btn" onclick="goTo(4)">Lanjutkan →</button>
+  </section>
+
+  <!-- SCENE 4 — kue & lilin -->
+  <section class="scene" id="scene4">
 
     <div class="cake-wrap" id="candleWrap">
       <div class="cake-stack">
@@ -613,11 +693,11 @@
       </div>
     </div>
     <p class="hold-instruction" id="candleInstruction">Ketuk kuenya untuk menyalakan lilin</p>
-    <button class="btn candle-continue" id="candleContinueBtn" onclick="goTo(4)">Lanjut →</button>
+    <button class="btn candle-continue" id="candleContinueBtn" onclick="goTo(5)">Lanjut →</button>
   </section>
 
-  <!-- SCENE 4 — satu permohonan -->
-  <section class="scene" id="scene4">
+  <!-- SCENE 5 — satu permohonan -->
+  <section class="scene" id="scene5">
     <p class="eyebrow">satu permohonan</p>
     <div class="tag-grid">
       <div class="tag" onclick="flipTag(this)">
@@ -647,20 +727,20 @@
     </div>
     <p class="tag-counter" id="tagCounter">0/4 dibuka</p>
     <p class="wish-caption">Ketuk satu-satu kartunya, ada permohonan aku di baliknya.</p>
-    <button class="btn" onclick="goTo(5)">Lanjut →</button>
+    <button class="btn" onclick="goTo(6)">Lanjut →</button>
   </section>
 
-  <!-- SCENE 5 — heart photo collage -->
-  <section class="scene" id="scene5">
+  <!-- SCENE 6 — heart photo collage -->
+  <section class="scene" id="scene6">
     <p class="eyebrow">satu kumpulan kenangan</p>
     <div id="heart-wrap"></div>
     <h2 class="display" style="font-size:1.4rem; margin:4px 0 4px;">Happy Birthday, Kak ai.</h2>
 
-    <button class="btn" onclick="goTo(6)">Ada satu surat buat kamu →</button>
+    <button class="btn" onclick="goTo(7)">Ada satu surat buat kamu →</button>
   </section>
 
-  <!-- SCENE 6 — surat kecil -->
-  <section class="scene" id="scene6">
+  <!-- SCENE 7 — surat kecil -->
+  <section class="scene" id="scene7">
     <p class="eyebrow">surat kecil</p>
     <div class="letter-row">
       <div class="letter-viewport" id="letterViewport">
@@ -712,8 +792,8 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
     </div>
   </section>
 
-  <!-- SCENE 7 — kartu-kartu -->
-  <section class="scene" id="scene7">
+  <!-- SCENE 8 — kartu-kartu -->
+  <section class="scene" id="scene8">
     <p class="eyebrow" style="margin-bottom:18px;">satu-satu, biar nggak buru-buru</p>
     <div class="stack">
       <div class="stack-card">
@@ -732,11 +812,11 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
         <svg class="corner-flower" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 2 1 4 0 6-1-2-1-4 0-6zM12 16c1 2 1 4 0 6-1-2-1-4 0-6zM2 12c2-1 4-1 6 0-2 1-4 1-6 0zM16 12c2-1 4-1 6 0-2 1-4 1-6 0z"/><circle cx="12" cy="12" r="2.4"/></svg>
       </div>
     </div>
-    <button class="btn" onclick="goTo(8)">Satu hal terakhir →</button>
+    <button class="btn" onclick="goTo(9)">Satu hal terakhir →</button>
   </section>
 
-  <!-- SCENE 8 — final card -->
-  <section class="scene" id="scene8">
+  <!-- SCENE 9 — final card -->
+  <section class="scene" id="scene9">
     <div class="final-card">
       <span class="corner tl"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 32 Q5 8 30 8"/><circle cx="5" cy="32" r="2" fill="currentColor" stroke="none"/><path d="M30 8 L24 6.5 M30 8 L28 14"/></svg></span>
       <span class="corner br"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 32 Q5 8 30 8"/><circle cx="5" cy="32" r="2" fill="currentColor" stroke="none"/><path d="M30 8 L24 6.5 M30 8 L28 14"/></svg></span>
@@ -746,11 +826,11 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
       <hr>
       <p class="msg">Semoga semua yg Kak ai usahakan tahun ini berbuah manis, dan kesibukan akhir sebelum lulusnya cepat kelar. Selamat ulang tahun :)</p>
     </div>
-    <button class="btn" onclick="goTo(9)">Lanjut →</button>
+    <button class="btn" onclick="goTo(10)">Lanjut →</button>
   </section>
 
-  <!-- SCENE 9 — rating salting -->
-  <section class="scene" id="scene9">
+  <!-- SCENE 10 — rating salting -->
+  <section class="scene" id="scene10">
     <p class="eyebrow">satu rating jujur</p>
     <h2 class="display" style="font-size:1.4rem; margin:0 0 6px; max-width:280px;">Kasih rating buat kado ini, dong</h2>
     <p style="font-size:.85rem; color:var(--blue-soft); max-width:260px; margin-bottom:4px;">Jujur aja, aku ga akan marah kok.</p>
@@ -1120,7 +1200,17 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
     }, 90);
   }
 
-  /* ---------------- SCENE 3: tap untuk menyalakan lilin ---------------- */
+  /* ---------------- SCENE 3: foto polaroid kalender ---------------- */
+  // Isi link/nama file foto kak ai untuk polaroid di scene kalender.
+  // Kalau dikosongkan, tetap pakai placeholder ikon kamera.
+  const CAL_PHOTO_URL = '';
+  if(CAL_PHOTO_URL){
+    const cp = document.getElementById('calPhotoInner');
+    cp.style.backgroundImage = `url(${CAL_PHOTO_URL})`;
+    cp.innerHTML = '';
+  }
+
+  /* ---------------- SCENE 4: tap untuk menyalakan lilin ---------------- */
   const candleWrap = document.getElementById('candleWrap');
   const flame = document.getElementById('flame');
   const handMatch = document.getElementById('handMatch');
@@ -1141,7 +1231,7 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
   }
   candleWrap.addEventListener('click', lightCandle);
 
-  /* ---------------- SCENE 6: carousel surat (geser atas/bawah) ---------------- */
+  /* ---------------- SCENE 7: carousel surat (geser atas/bawah) ---------------- */
   const LETTER_COUNT = document.querySelectorAll('#letterTrack .letter-page').length;
   const letterTrack = document.getElementById('letterTrack');
   const letterViewport = document.getElementById('letterViewport');
@@ -1164,7 +1254,7 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
       letterCta.onclick = letterNext;
     } else {
       letterCta.textContent = 'Masih ada lagi →';
-      letterCta.onclick = ()=> goTo(7);
+      letterCta.onclick = ()=> goTo(8);
     }
   }
   function letterGoTo(i){
@@ -1200,7 +1290,7 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
     setTimeout(()=> letterWheelLock = false, 500);
   }, {passive:false});
 
-  /* ---------------- SCENE 4: flip tag permohonan ---------------- */
+  /* ---------------- SCENE 5: flip tag permohonan ---------------- */
   let tagsOpened = 0;
   function flipTag(el){
     if(!el.classList.contains('flipped')){
@@ -1214,7 +1304,7 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
   // Ganti placeholder ini dengan foto asli: isi array PHOTO_URLS dengan
   // link gambar (contoh: "foto1.jpg" kalau file ada di folder yg sama).
   const PHOTO_URLS = []; // <-- GANTI FOTO DI SINI kalau sudah ada fotonya
-  // Foto untuk kartu "Satu foto yg harus masuk" di scene 7 (isi salah satu
+  // Foto untuk kartu "Satu foto yg harus masuk" di scene 8 (isi salah satu
   // nama file/URL foto kalian, kalau kosong tetap pakai placeholder ikon kamera)
   const STACK_PHOTO_1 = '';
 
@@ -1288,7 +1378,7 @@ Tolong jangan terlalu dipikirin ya kak. Kak ai cukup jadi Kak ai yg biasa aja, s
     document.getElementById('lightboxOverlay').classList.remove('show');
   }
 
-  /* ---------------- SCENE 9: rating salting ---------------- */
+  /* ---------------- SCENE 10: rating salting ---------------- */
   const RATING_MESSAGES = {
     1: 'Dih butut banget cuma ngasih bintang 1, minimal ngasih nomor WA kek',
     2: 'Masih butut ah, apa apaan yak cuma ngasih bintang 2, di bilang minimal ngasih WA',
